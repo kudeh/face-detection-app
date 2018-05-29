@@ -22,3 +22,4 @@ yarn-error.log*
 
 #passwords and apikeys
 /Front-End/src/apiKey.json
+/Back-End/databaseCreds.js
