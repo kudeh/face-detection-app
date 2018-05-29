@@ -20,7 +20,7 @@ class Register extends Component {
   }
 
   onPasswordChange = (event) => {
-    this.setState({ pass: event.target.value })
+    this.setState({ password: event.target.value })
   }
 
   onSubmitSignIn = () => {

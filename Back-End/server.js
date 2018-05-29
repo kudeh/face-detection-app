@@ -17,27 +17,6 @@ const db = knex({
 
 const app = express();
 
-const database = {
-  users: [
-    {
-      id: '123',
-      name: 'John',
-      email: 'john@gmail.com',
-      password: 'cookies',
-      entries: 0,
-      joined: new Date()
-    },
-    {
-      id: '124',
-      name: 'Sally',
-      email: 'sally@gmail.com',
-      password: 'bananas',
-      entries: 0,
-      joined: new Date()
-    }
-  ]
-}
-
 app.use(bodyParser.json());
 app.use(cors());
 
@@ -51,7 +30,6 @@ app.post('/signin', (req, res) => {
     .where('email', '=', req.body.email)
     .then(data => {
       const isValid = bcrypt.compareSync(req.body.password, data[0].hash)
-      console.log(req.body, isValid, data[0].hash)
 
       if(isValid) {
         return db.select('*').from('users')
@@ -75,9 +53,11 @@ app.post('/register', (req, res) => {
   const { email, name, password } = req.body;
 
   const hash = bcrypt.hashSync(password);
-  console.log(hash);
+  console.log(req.body);
+  console.log(email, name, password, hash);
 
   db.transaction(trx => {
+    console.log('here')
     trx.insert({
       hash: hash,
       email: email
