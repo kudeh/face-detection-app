@@ -9,10 +9,10 @@ import Register from './components/Register/Register';
 import Particles from 'react-particles-js';
 import './App.css';
 import Clarifai from 'clarifai';
+import apiKey from './apiKey.json'
 
-const app = new Clarifai.App({
-  apiKey: 'a35a6665cd5646e28a0d1722bb62b8f6'
-});
+const app = new Clarifai.App(apiKey);
+console.log(apiKey);
 
 const particlesOptions = {
   number: {
